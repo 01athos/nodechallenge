@@ -11,4 +11,6 @@ class nodejs {
 	include nodejs::npmdep
 	include nodejs::lynxapp
 	include nodejs::lynxexec
+	include nodejs::nginxconfig
+	include nodejs::ufwconfig
 }

@@ -32,19 +32,4 @@ class nodejs::nginxconfig {
 	mode => '644',
 	notify  => Service["nginx"],} -> # Restart nginx server if being updated
 
-	file { 'ufw.conf':
-        path => '/etc/ufw/ufw.conf',
-        ensure => file,
-        owner => root,
-        group => root,
-        source => "puppet:///modules/nodejs/ufw.conf",
-        mode => '644',
-        notify  => Service["ufw"],} ->
-
-	exec { "firewall rules":
-        command  => '/usr/sbin/ufw allow 'OpenSSH' && /usr/sbin/ufw 'Nginx HTTPS'',
-        user => 'root',
-        provider => 'shell',
-        logoutput => true,}
-	
 }
