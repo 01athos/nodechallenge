@@ -7,7 +7,7 @@ After=network.target
 Type=forking
 User=ubuntu
 LimitNOFILE=infinity
-LimitNPROC=infinity
+LimitNPROC=32
 LimitCORE=infinity
 Environment=PATH=/usr/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 Environment=PM2_HOME=/home/ubuntu/.pm2
