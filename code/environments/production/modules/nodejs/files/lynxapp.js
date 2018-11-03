@@ -1,11 +1,27 @@
-#!/usr/bin/env nodejs
-var express = require('express');
-var app = express();
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
 
-app.get('/', function (req, res) {
-res.send('Hello World!');
-});
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-app.listen(3000, function () {
-console.log('Example app listening on port 3000!');
-});
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+	var express = require('express');
+	var app = express();
+
+	app.get('/', function (req, res) {
+	res.send('Hello World!');
+	});
+
+	app.listen(3000, function () {
+	console.log('Example app listening on port 3000!');
+	});
+}

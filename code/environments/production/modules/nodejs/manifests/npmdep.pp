@@ -12,5 +12,12 @@ class nodejs::npmdep {
 		  logoutput => true,
 		  require => Class['nodejs::nodeinstall'], 
 		  unless => 'npm list |grep express',
+	     } ->
+	exec { "npm pm2":
+        	  command  => 'npm install -g pm2@latest',
+		  user => 'root',
+	          provider => 'shell',
+		  logoutput => true,
+		  unless => 'npm list |grep pm2',
 	     }
 }

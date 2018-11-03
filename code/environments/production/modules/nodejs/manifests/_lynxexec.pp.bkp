@@ -5,7 +5,7 @@
 # @example
 #   include nodejs::lynxexec
 class nodejs::lynxexec {
-		service {'pm2-ubuntu.service': 
-			ensure => stopped, 
+		service {'lynx-app.service': 
+			ensure => running, 
 			enable => true,}
 }
