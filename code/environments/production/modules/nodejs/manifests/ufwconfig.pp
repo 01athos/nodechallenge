@@ -7,10 +7,11 @@
 class nodejs::ufwconfig {
 
         exec { "firewall rules":
-        command  => '/usr/sbin/ufw allow 'OpenSSH' && /usr/sbin/ufw 'Nginx HTTPS'',
+        command  => '/usr/sbin/ufw allow "OpenSSH" && /usr/sbin/ufw allow "Nginx HTTPS" && /usr/bin/touch /home/rulesok.txt',
         user => 'root',
         provider => 'shell',
-	require =>  Class['nodejs::nginxconf']
+	require =>  Class['nodejs::nginxconfig'],
+	unless => '/usr/bin/test -f /home/rulesok.txt',
         logoutput => true,} ->
 	
 	file { 'ufw.conf':
@@ -19,6 +20,12 @@ class nodejs::ufwconfig {
         owner => root,
         group => root,
         source => "puppet:///modules/nodejs/ufw.conf",
-        mode => '644',
-        notify  => Service["ufw"],}
+        mode => '644',} ->
+
+	exec { "firewall restart":
+        command  => '/bin/systemctl restart ufw && /usr/bin/touch /home/firewallok.txt',
+        user => 'root',
+        provider => 'shell',
+	unless => '/usr/bin/test -f /home/firewallok.txt',
+        logoutput => true,}
 }

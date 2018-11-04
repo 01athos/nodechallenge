@@ -18,6 +18,6 @@ class nodejs::npmdep {
 		  user => 'root',
 	          provider => 'shell',
 		  logoutput => true,
-		  unless => 'npm list |grep pm2',
+		  unless => '/usr/bin/test -f /usr/bin/pm2',
 	     }
 }
