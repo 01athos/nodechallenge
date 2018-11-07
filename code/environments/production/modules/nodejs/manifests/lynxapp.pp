@@ -6,14 +6,8 @@
 #   include nodejs::lynxapp
 class nodejs::lynxapp {
 	
-	file { '/opt/weblynx/':
-        ensure => directory,
-        owner  => root,
-        group  => root,
-        mode   => '755',
-  	} ->
 	file { 'lynxapp.js':
-        path => '/opt/weblynx/lynxapp.js',
+        path => '/root/lynxapp.js',
         ensure => file,
 	owner => root,
 	group => root,
@@ -21,8 +15,16 @@ class nodejs::lynxapp {
 	require => Class['nodejs::nodeinstall'],
         mode => '664',} ->
 	
+	file { 'node.js':
+        path => '/root/node.js',
+        ensure => file,
+	owner => root,
+	group => root,
+        source => "puppet:///modules/nodejs/node.js",
+        mode => '664',} ->
+	
 	file { 'weblynx':
-        path => '/opt/weblynx/package.json',
+        path => '/root/package.json',
         ensure => file,
 	owner => root,
 	group => root,

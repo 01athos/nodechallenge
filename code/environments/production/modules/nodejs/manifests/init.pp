@@ -8,8 +8,8 @@ class nodejs {
 	include nodejs::repos
 	include nodejs::packages
 	include nodejs::nodeinstall
-	include nodejs::npmdep
 	include nodejs::lynxapp
+	include nodejs::npmdep
 	include nodejs::lynxexec
 	include nodejs::nginxconfig
 	include nodejs::ufwconfig

@@ -6,8 +6,8 @@
 #   include nodejs::lynxexec
 class nodejs::lynxexec {
 		exec { "pm2 start":
-		cwd => '/opt/weblynx/',
-                command  => '/usr/bin/pm2 start /opt/weblynx/lynxapp.js -i max',
+		cwd => '/root',
+                command  => '/usr/bin/pm2 start lynxapp.js -i max',
                 user => 'root',
                 provider => 'shell',
                 logoutput => true,

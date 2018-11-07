@@ -6,19 +6,18 @@
 #   include nodejs::npmdep
 class nodejs::npmdep {
 	exec { "npm pm2":
-       	          command  => 'npm install -g pm2@latest && sudo npm install backup@latest',
+       	          command  => 'npm install -g pm2@latest && npm install backup@latest',
+		  cwd => '/root',
 		  user => 'root',
 	          provider => 'shell',
 		  logoutput => true,
-		  unless => '/usr/bin/test -f /usr/bin/pm2',
+		  require => Class['nodejs::lynxapp'], 
 	     } ->
 	exec { "npm dependencies":
-        	  command  => 'npm install',
-		  cwd => '/opt/weblynx',
+        	  command  => 'cd /root && npm install',
+		  cwd => '/root',
 		  user => 'root',
 	          provider => 'shell',
 		  logoutput => true,
-		  require => Class['nodejs::nodeinstall'], 
-		  unless => 'npm list |grep express',
 	     }
 }
