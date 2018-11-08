@@ -6,17 +6,17 @@
 #   include nodejs::npmdep
 class nodejs::npmdep {
 	exec { "npm pm2":
-       	          command  => 'npm install -g pm2@latest && npm install backup@latest',
-		  cwd => '/root',
-		  user => 'root',
+       	          command  => 'sudo npm install -g pm2@latest && sudo npm install backup@latest',
+		  cwd => '/home/ubuntu',
+		  user => 'ubuntu',
 	          provider => 'shell',
 		  logoutput => true,
 		  require => Class['nodejs::lynxapp'], 
 	     } ->
 	exec { "npm dependencies":
-        	  command  => 'cd /root && npm install',
-		  cwd => '/root',
-		  user => 'root',
+        	  command  => 'sudo npm install',
+		  cwd => '/home/ubuntu',
+		  user => 'ubuntu',
 	          provider => 'shell',
 		  logoutput => true,
 	     }

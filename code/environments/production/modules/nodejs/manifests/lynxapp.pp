@@ -7,35 +7,27 @@
 class nodejs::lynxapp {
 	
 	file { 'lynxapp.js':
-        path => '/root/lynxapp.js',
+        path => '/home/ubuntu/lynxapp.js',
         ensure => file,
-	owner => root,
-	group => root,
+	owner => ubuntu,
+	group => ubuntu,
         source => "puppet:///modules/nodejs/lynxapp.js",
 	require => Class['nodejs::nodeinstall'],
         mode => '664',} ->
 	
-	file { 'node.js':
-        path => '/root/node.js',
-        ensure => file,
-	owner => root,
-	group => root,
-        source => "puppet:///modules/nodejs/node.js",
-        mode => '664',} ->
-	
 	file { 'weblynx':
-        path => '/root/package.json',
+        path => '/home/ubuntu/package.json',
         ensure => file,
-	owner => root,
-	group => root,
+	owner => ubuntu,
+	group => ubuntu,
         source => "puppet:///modules/nodejs/package.json",
         mode => '664',} ->
 	
 	file { 'pm2-ubuntu.service':
         path => '/etc/systemd/system/pm2-ubuntu.service',
         ensure => file,
-	owner => root,
-	group => root,
+	owner => ubuntu,
+	group => ubuntu,
         source => "puppet:///modules/nodejs/pm2-ubuntu.service",
 	mode => '755',}
 }

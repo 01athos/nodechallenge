@@ -4,14 +4,14 @@ Documentation=https://pm2.keymetrics.io/
 After=network.target
 
 [Service]
-Type=clustering
-User=root
+Type=cluster
+User=ubuntu
 LimitNOFILE=infinity
 LimitNPROC=32
 LimitCORE=infinity
 Environment=PATH=/usr/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
-Environment=PM2_HOME=/opt/weblynx/.pm2
-PIDFile=/opt/weblynx/.pm2/pm2.pid
+Environment=PM2_HOME=/home/ubuntu/.pm2
+PIDFile=/home/ubuntu/.pm2/pm2.pid
 
 ExecStart=/usr/lib/node_modules/pm2/bin/pm2 resurrect
 ExecReload=/usr/lib/node_modules/pm2/bin/pm2 reload all
