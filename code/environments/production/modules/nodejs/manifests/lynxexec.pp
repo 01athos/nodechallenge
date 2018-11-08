@@ -7,7 +7,7 @@
 class nodejs::lynxexec {
 		exec { "pm2 start":
 		cwd => '/home/ubuntu',
-                command  => 'export PM2_HOME="/home/ubuntu/.pm2"',
+                command  => 'export PM2_HOME="/home/ubuntu/.pm2" && pm2 start lynxapp.js -i max',
                 user => 'ubuntu',
                 provider => 'shell',
                 logoutput => true,
