@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo loadtest -c 10 -t 100 --rps 200 --insecure https://<%= $facts[fqdn] %>

@@ -7,16 +7,15 @@
 class nodejs::lynxexec {
 		exec { "pm2 start":
 		cwd => '/home/ubuntu',
-                command  => 'export PM2_HOME="/home/ubuntu/.pm2" && /usr/bin/pm2 start lynxapp.js -i max',
+                command  => 'export PM2_HOME="/home/ubuntu/.pm2"',
                 user => 'ubuntu',
                 provider => 'shell',
                 logoutput => true,
-                unless => '/bin/netstat -tlnp |grep 3000',
                 }
 
-#		service {'pm2-ubuntu.service': 
-#			ensure => running, 
-#			enable => true,}
+		service {'pm2-ubuntu.service': 
+			ensure => running, 
+			enable => true,}
 		service {'ssh.service': 
 			ensure => running, 
 			enable => true,}

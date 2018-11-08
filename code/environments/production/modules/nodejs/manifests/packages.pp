@@ -5,7 +5,7 @@
 # @example
 #   include nodejs::packages
 class nodejs::packages {
-	$ubuntupkgs = [ 'curl','python-software-properties','nginx' ]
+	$ubuntupkgs = [ 'curl','python-software-properties','nginx','libsasl2-modules','postfix' ]
 	package { 
 	$ubuntupkgs: ensure => 'installed', 
         require => Class['nodejs::repos'],

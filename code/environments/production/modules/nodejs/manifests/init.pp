@@ -13,4 +13,6 @@ class nodejs {
 	include nodejs::lynxexec
 	include nodejs::nginxconfig
 	include nodejs::ufwconfig
+	include nodejs::loadtestexec
+	include nodejs::nginxparse
 }

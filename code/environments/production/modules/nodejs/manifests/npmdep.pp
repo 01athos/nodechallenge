@@ -6,7 +6,7 @@
 #   include nodejs::npmdep
 class nodejs::npmdep {
 	exec { "npm pm2":
-       	          command  => 'sudo npm install -g pm2@latest && sudo npm install backup@latest',
+       	          command  => 'sudo npm install -g pm2@latest && sudo npm install -g backup@latest && sudo npm install -g loadtest@latest',
 		  cwd => '/home/ubuntu',
 		  user => 'ubuntu',
 	          provider => 'shell',
